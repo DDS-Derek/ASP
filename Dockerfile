@@ -2,7 +2,8 @@ FROM alpine:3.16
 
 ENV PUID=1000 \
     PGID=1000 \
-    TZ=Asia/Shanghai
+    TZ=Asia/Shanghai \
+    CFVR=755
 
 ADD ./shell /shell
 
