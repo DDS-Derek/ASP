@@ -1,6 +1,9 @@
 name: 构建Automatically Set Permissions镜像
+
 on:
-  workflow_dispatch:
+    release:
+        types: [published]
+
 jobs:
   push:
     runs-on: ubuntu-latest
