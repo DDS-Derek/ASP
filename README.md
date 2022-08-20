@@ -50,10 +50,10 @@ services:
 
 |         Parameter         |                           Function                           |
 | :-----------------------: | :----------------------------------------------------------: |
-|    ```-e PGID=1000```     | 对于 GroupID - 请参阅下面的[说明](https://github.com/DDS-Derek/bgmi-docker-all-in-one#puid-guid-%E8%AF%B4%E6%98%8E) |
-|    ```-e PUID=1000```     | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/bgmi-docker-all-in-one#puid-guid-%E8%AF%B4%E6%98%8E) |
+|    ```-e PGID=1000```     | 对于 GroupID - 请参阅下面的[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
+|    ```-e PUID=1000```     | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
 | ```-e TZ=Asia/Shanghai``` |                             时区                             |
-|    ```-e CFVR=755 ```     | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/bgmi-docker-all-in-one#puid-guid-%E8%AF%B4%E6%98%8E) |
+|    ```-e CFVR=755 ```     | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E) |
 |     ```-v /00-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |     ```-v /01-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |     ```-v /02-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
