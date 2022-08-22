@@ -25,6 +25,13 @@ docker run -itd \
   -e PGID=1000 \
   -e PUID=1000 \
   -e CFVR=755 \
+  -e SMTP=false \
+  -e FROM_EMAIL=test@test.com \
+  -e MAILER_HOST=smtp.test.com:25 \
+  -e TO_EMAIL=test@test.com \
+  -e MAILER_USER=test@test.com \
+  -e MAILER_PASSWORD=test \
+  -e TLS=yes
   -v /path:/00-asp \
   -v /path:/01-asp \
   -v /path:/02-asp \
@@ -46,6 +53,13 @@ services:
             - PGID=1000
             - PUID=1000
             - CFVR=755
+            - SMTP=false
+            - FROM_EMAIL=test@test.com
+            - MAILER_HOST=smtp.test.com:25
+            - TO_EMAIL=test@test.com
+            - MAILER_USER=test@test.com
+            - MAILER_PASSWORD=test
+            - TLS=yes
         volumes:
             - '/path:/00-asp'
             - '/path:/01-asp'
@@ -57,17 +71,24 @@ services:
 
 ## 参数说明
 
-|         Parameter         |                           Function                           |
-| :-----------------------: | :----------------------------------------------------------: |
-|    ```-e PGID=1000```     | 对于 GroupID - 请参阅下面的[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
-|    ```-e PUID=1000```     | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
-| ```-e TZ=Asia/Shanghai``` |                             时区                             |
-|    ```-e CFVR=755 ```     | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E) |
-|     ```-v /00-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
-|     ```-v /01-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
-|     ```-v /02-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
-|     ```-v /03-asp```      | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
-|       ```-v /app```       |                           log目录                            |
+|               Parameter               |                           Function                           |
+| :-----------------------------------: | :----------------------------------------------------------: |
+|          ```-e PGID=1000```           | 对于 GroupID - 请参阅下面的[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
+|          ```-e PUID=1000```           | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
+|       ```-e TZ=Asia/Shanghai```       |                             时区                             |
+|          ```-e CFVR=755 ```           | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E) |
+|          ```-e SMTP=false```          |                         是否开启SMTP                         |
+|   ```-e FROM_EMAIL=test@test.com```   |                         SMTP发送邮箱                         |
+| ```-e MAILER_HOST=smtp.test.com:25``` |                        SMTP服务器地址                        |
+|    ```-e TO_EMAIL=test@test.com```    |                           接收邮箱                           |
+|  ```-e MAILER_USER=test@test.com```   |                         SMTP认证用户                         |
+|     ```-e MAILER_PASSWORD=test```     |                         SMTP认证密码                         |
+|           ```-e TLS=yes```            |                           是否TLS                            |
+|           ```-v /00-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
+|           ```-v /01-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
+|           ```-v /02-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
+|           ```-v /03-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
+|             ```-v /app```             |                           log目录                            |
 
 ## 文件权限说明
 
