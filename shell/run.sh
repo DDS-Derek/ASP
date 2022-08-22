@@ -9,3 +9,6 @@ chmod -R $CFVR /01-asp
 chmod -R $CFVR /02-asp
 chmod -R $CFVR /03-asp
 echo '设置完成'
+if [[ ${SMTP} = 'true' ]]; then
+	bash /shell/sendmail.sh
+fi

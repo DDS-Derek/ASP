@@ -25,6 +25,11 @@ if [ ! -f "/run.lock" ]; then
     (crontab -l ; echo "0 */2 * * * /shell/run.sh") | crontab -
 fi
 
+# 测试SMTP
+if [[ ${SMTP} = 'true' ]]; then
+	bash /shell/sendmail.sh
+fi
+
 # 启动Cron
 echo -e "\033[34m已启动 \033[0m"
 bash /shell/040-start.sh
