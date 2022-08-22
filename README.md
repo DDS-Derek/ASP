@@ -36,7 +36,7 @@ docker run -itd \
   -v /path:/01-asp \
   -v /path:/02-asp \
   -v /path:/03-asp \
-  -v /log:/app \
+  -v /log:/app/log \
   ddsderek/asp:latest
 ```
 
@@ -65,7 +65,7 @@ services:
             - '/path:/01-asp'
             - '/path:/02-asp'
             - '/path:/03-asp'
-            - '/log:/app'
+            - '/log:/app/log'
         image: 'ddsderek/asp:latest'
 ```
 
@@ -88,7 +88,7 @@ services:
 |           ```-v /01-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |           ```-v /02-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |           ```-v /03-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
-|             ```-v /app```             |                           log目录                            |
+|             ```-v /app/log```             |                           log目录                            |
 
 ## 文件权限说明
 
