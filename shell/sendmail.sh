@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sendEmail \
-    -f $MAILER_USER \
+    -f $FROM_EMAIL \
     -s $MAILER_HOST \
     -t $TO_EMAIL \
     -xu $MAILER_USER \
