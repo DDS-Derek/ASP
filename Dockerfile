@@ -15,7 +15,7 @@ ENV PUID=1000 \
 ADD ./shell /shell
 
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
-    apk add --no-cache --update tzdata shadow bash perl perl-net-ssleay perl-io-socket-ssl && \
+    apk add --no-cache --update tzdata shadow bash perl perl-net-ssleay perl-io-socket-ssl supervisor && \
     wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz -P /tmp/ && \
     tar -xzvf /tmp/sendEmail-v1.56.tar.gz -C /tmp/ && \
     cp -a /tmp/sendEmail-v1.56/sendEmail /usr/local/bin && \
@@ -26,10 +26,13 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     rm -rf /root/.cache && \
     rm -rf /tmp/* && \
     chmod -R 755 /shell && \
-    mkdir -p /app && \
+    mkdir -p /app/log && \
+    mkdir -p /var/log/supervisor && \
+    mkdir -p /etc/supervisor.d/ && \
     mkdir -p /00-asp && \
     mkdir -p /01-asp && \
     mkdir -p /02-asp && \
-    mkdir -p /03-asp
+    mkdir -p /03-asp && \
+    cp /shell/asp.ini /app/supervisord.conf
 
 CMD [ "/shell/000-start.sh" ]
