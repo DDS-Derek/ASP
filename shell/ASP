@@ -1,0 +1,15 @@
+#/bin/bash
+echo '------------------------------------------'
+echo 
+echo ' █████╗      █████╗     ██████╗'
+echo '██╔══██╗    █╔═══╗╝    ██╔══██╗'
+echo '███████║     ████╚╗    ██████╔╝'
+echo '██╔══██║         █║    ██╔═══╝ '
+echo '██║  ██║    █████╔╝    ██║     '
+echo '╚═╝  ╚═╝    ╚════╝     ╚═╝     '
+echo 
+echo 'https://github.com/DDS-Derek/ASP'
+echo 
+echo 'Copyright (c) 2022 DDSRem DDSDerek'
+echo 
+echo '------------------------------------------'
