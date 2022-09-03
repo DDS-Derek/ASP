@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo /shell/ASP
+cat /shell/ASP
 
 # 设置时区
 if [ ! -f "/tz.lock" ]; then
