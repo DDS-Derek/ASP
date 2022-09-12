@@ -44,5 +44,12 @@ if [[ ${SMTP} = 'true' ]]; then
         -o message-charset=utf-8
 fi
 
+# 测试TG机器人
+if [[ ${TGBOT} = 'true' ]]; then
+    curl -s -k "https://api.telegram.org/bot$TGBOT_SEND_TOKEN/sendMessage" \
+        --data-urlencode "chat_id=$TGBOT_SEND_CHATID" \
+        --data-urlencode "text=这是一条测试消息 This is a test message"
+fi
+
 # 启动
 exec /usr/bin/supervisord -n -c /app/supervisord.conf
