@@ -55,5 +55,10 @@ if [[ ${TGBOT} = 'true' ]]; then
         --data-urlencode "text=这是一条测试消息 This is a test message"
 fi
 
+# 测试Server酱
+if [[ ${SERVERCHAN} = 'true' ]]; then
+    curl -s "http://sc.ftqq.com/$SERVERCHAN_KEY.send?text=ASP" -d "&desp=这是一条测试消息 This is a test message"
+fi
+
 # 启动
 exec /usr/bin/supervisord -n -c /app/supervisord.conf
