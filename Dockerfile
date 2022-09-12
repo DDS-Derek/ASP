@@ -19,7 +19,7 @@ ENV PUID=1000 \
 ADD ./shell /shell
 
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
-    apk add --no-cache --update tzdata shadow bash curl perl perl-net-ssleay perl-io-socket-ssl supervisor && \
+    apk add --no-cache --update tzdata shadow bash curl coreutils jq perl perl-net-ssleay perl-io-socket-ssl supervisor && \
     wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz -P /tmp/ && \
     tar -xzvf /tmp/sendEmail-v1.56.tar.gz -C /tmp/ && \
     cp -a /tmp/sendEmail-v1.56/sendEmail /usr/local/bin && \
