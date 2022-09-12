@@ -5,13 +5,17 @@ cat /shell/ASP
 # 设置时区
 if [ ! -f "/tz.lock" ]; then
     echo -e "\033[34m设置时区... \033[0m"
-    bash /shell/010-tz.sh
+    ln -sf /usr/share/zoneinfo/$TZ   /etc/localtime
+    echo $TZ > /etc/timezone
+    touch /tz.lock
+    echo "设置完成" > /tz.lock
 fi
 
 if [ ! -f "/adduser.lock" ]; then
     touch /adduser.lock
     echo -e "\033[34m设置PUID PGID... \033[0m"
-    bash /shell/011-adduser.sh
+    groupmod -o -g "$PGID" abc
+    usermod -o -u "$PUID" abc
 fi
 
 # 创建logs文件
@@ -24,7 +28,7 @@ fi
 if [ ! -f "/run.lock" ]; then
     touch /run.lock
     echo -e "\033[34m设置定时任务中... \033[0m"
-    (crontab -l ; echo "0 */2 * * * /shell/run.sh") | crontab -
+    (crontab -l ; echo "0 */2 * * * /app/run.sh") | crontab -
 fi
 
 # 测试SMTP
