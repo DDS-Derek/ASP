@@ -27,5 +27,5 @@ fi
 if [[ ${TGBOT} = 'true' ]]; then
     curl -s -k "https://api.telegram.org/bot$TGBOT_SEND_TOKEN/sendMessage" \
         --data-urlencode "chat_id=$TGBOT_SEND_CHATID" \
-        --data-urlencode "text=设置权限成功"
+        --data-urlencode "text=设置权限成功 Set permissions successfully"
 fi
