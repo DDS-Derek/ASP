@@ -10,7 +10,11 @@ ENV PUID=1000 \
     TO_EMAIL=test@test.com \
     MAILER_USER=test@test.com \
     MAILER_PASSWORD=test \
-    TLS=yes
+    TLS=yes \
+    TGBOT=false \
+    TGBOT_SEND_TOKEN= \
+    TGBOT_SEND_CHATID=
+    
 
 ADD ./shell /shell
 
