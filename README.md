@@ -24,6 +24,8 @@ docker run -itd \
   -e TZ=Asia/Shanghai \
   -e PGID=1000 \
   -e PUID=1000 \
+  -e PT_QIANDAO=true \
+  -e SET_PM=true \
   -e CFVR=755 \
   -e SMTP=false \
   -e FROM_EMAIL=test@test.com \
@@ -37,6 +39,7 @@ docker run -itd \
   -v /path:/02-asp \
   -v /path:/03-asp \
   -v /log:/app/log \
+  -v /pt_qiandao:/app/pt_qiandao \
   ddsderek/asp:latest
 ```
 
@@ -52,6 +55,8 @@ services:
             - TZ=Asia/Shanghai
             - PGID=1000
             - PUID=1000
+            - PT_QIANDAO=true
+            - SET_PM=true
             - CFVR=755
             - SMTP=false
             - FROM_EMAIL=test@test.com
@@ -66,6 +71,7 @@ services:
             - '/path:/02-asp'
             - '/path:/03-asp'
             - '/log:/app/log'
+            - '/pt_qiandao:/app/pt_qiandao'
         image: 'ddsderek/asp:latest'
 ```
 
@@ -76,6 +82,8 @@ services:
 |          ```-e PGID=1000```           | 对于 GroupID - 请参阅下面的[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
 |          ```-e PUID=1000```           | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
 |       ```-e TZ=Asia/Shanghai```       |                             时区                             |
+|       ```-e PT_QIANDAO=true```       |                             是否开启PT自动签到                             |
+|       ```-e SET_PM=true```       |                             是否开启自动设置权限                             |
 |          ```-e CFVR=755 ```           | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E) |
 |          ```-e SMTP=false```          |                         是否开启SMTP                         |
 |   ```-e FROM_EMAIL=test@test.com```   |                         SMTP发送邮箱                         |
@@ -89,6 +97,7 @@ services:
 |           ```-v /02-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |           ```-v /03-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |             ```-v /app/log```             |                           log目录                            |
+|             ```-v /app/pt_qiandao```             |                           PT签到配置文件目录，[具体配置](https://github.com/aLuvletter/pt_res)                            |
 
 ## 文件权限说明
 
