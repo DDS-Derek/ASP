@@ -11,6 +11,7 @@ if [ ! -f "/tz.lock" ]; then
     echo "设置完成" > /tz.lock
 fi
 
+# 设置用户UID GID
 if [ ! -f "/adduser.lock" ]; then
     touch /adduser.lock
     echo -e "\033[34m设置PUID PGID... \033[0m"
@@ -18,10 +19,64 @@ if [ ! -f "/adduser.lock" ]; then
     usermod -o -u "$PUID" abc
 fi
 
+# 设置supervisord
+if [ ! -f "/supervisord.lock" ]; then
+    touch /supervisord.lock
+    cp /shell/asp.ini /app/supervisord.conf
+fi
+
+# 创建文件夹
+if [ ! -d "/app/log" ]; then
+    mkdir -p /app/log
+fi
+
+if [ ! -d "/app/pt_qiandao" ]; then
+    mkdir -p /app/pt_qiandao
+fi
+
+if [ ! -d "/var/log/supervisor" ]; then
+    mkdir -p /var/log/supervisor
+fi
+
+if [ ! -d "/etc/supervisor.d/" ]; then
+    mkdir -p /etc/supervisor.d/
+fi
+
+if [ ! -d "/00-asp" ]; then
+    mkdir -p /00-asp
+fi
+
+if [ ! -d "/01-asp" ]; then
+    mkdir -p /01-asp
+fi
+
+if [ ! -d "/02-asp" ]; then
+    mkdir -p /02-asp
+fi
+
+if [ ! -d "/03-asp" ]; then
+    mkdir -p /03-asp
+fi
+
 # 创建logs文件
 if [ ! -f "/app/log/ASP.log" ]; then
     echo -e "\033[34m创建logs文件... \033[0m"
     touch /app/log/ASP.log
+fi
+
+# 设置pt签到
+if [[ ${PT_QIANDAO} = 'true' ]]; then
+    # 创建pt_site_qiaodao_settings文件
+    if [ ! -f "/app/pt_qiandao/site.json" ]; then
+        echo -e "\033[34m创建pt_site_qiaodao_settings文件... \033[0m"
+        touch /app/pt_qiandao/site.json
+    fi
+
+    # 创建pt_site_qiaodao_app文件
+    if [ ! -f "/app/pt_qiandao/pt.py" ]; then
+        echo -e "\033[34m创建pt_site_qiaodao_app文件... \033[0m"
+        cp /app/pt.py /app/pt_qiandao/pt.py
+    fi
 fi
 
 # 设置crontab

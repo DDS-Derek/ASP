@@ -1,5 +1,23 @@
 #!/bin/bash
 
+function pt_qiandao {
+	cd /app/pt_qiandao
+	python3 pt.py
+	echo 'PT站点签到成功'
+}
+
+function set_pm {
+	chown -R abc:abc /00-asp
+	chown -R abc:abc /01-asp
+	chown -R abc:abc /02-asp
+	chown -R abc:abc /03-asp
+	chmod -R $CFVR /00-asp
+	chmod -R $CFVR /01-asp
+	chmod -R $CFVR /02-asp
+	chmod -R $CFVR /03-asp
+	echo '权限设置完成'
+}
+
 function smtp {
 sendEmail \
 	-f $FROM_EMAIL \
@@ -26,3 +44,4 @@ curl -s -k "https://api.telegram.org/bot$TGBOT_SEND_TOKEN/sendMessage" \
 function serverchan {
 curl -s "http://sc.ftqq.com/$SERVERCHAN_KEY.send?text=ASP" -d "&desp=设置权限成功 Set permissions successfully"
 }
+

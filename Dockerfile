@@ -4,6 +4,8 @@ ENV PUID=1000 \
     PGID=1000 \
     TZ=Asia/Shanghai \
     CFVR=755 \
+    PT_QIANDAO=true \
+    SET_PM=true \
     SMTP=false \
     FROM_EMAIL=test@test.com \
     MAILER_HOST=smtp.test.com:25 \
@@ -16,13 +18,11 @@ ENV PUID=1000 \
     TGBOT_SEND_CHATID= \
     SERVERCHAN=false \
     SERVERCHAN_KEY=
-    
-
-ADD ./shell /shell
-ADD ./app /app
 
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --no-cache --update \
+    python3-dev \
+    py3-pip \
     tzdata \
     shadow \
     bash \
@@ -33,6 +33,7 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     perl-net-ssleay \
     perl-io-socket-ssl \
     supervisor && \
+    python3 -m pip install requests && \
     wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz -P /tmp/ && \
     tar -xzvf /tmp/sendEmail-v1.56.tar.gz -C /tmp/ && \
     cp -a /tmp/sendEmail-v1.56/sendEmail /usr/local/bin && \
@@ -41,16 +42,11 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     adduser -S abc -G abc -h /home/abc && \
     rm -rf /var/cache/apk/* && \
     rm -rf /root/.cache && \
-    rm -rf /tmp/* && \
-    chmod -R 755 /shell && \
-    chmod -R 755 /app && \
-    mkdir -p /app/log && \
-    mkdir -p /var/log/supervisor && \
-    mkdir -p /etc/supervisor.d/ && \
-    mkdir -p /00-asp && \
-    mkdir -p /01-asp && \
-    mkdir -p /02-asp && \
-    mkdir -p /03-asp && \
-    cp /shell/asp.ini /app/supervisord.conf
+    rm -rf /tmp/*
 
-CMD [ "/shell/000-start.sh" ]
+COPY --chmod=755 . /
+
+CMD [ "/shell/start.sh" ]
+
+VOLUME [ "/app/log" ]
+VOLUME [ "/app/config" ]
