@@ -91,6 +91,7 @@ function test_notification {
             This is a test email \
             -o message-content-type=html \
             -o message-charset=utf-8
+        echo
     fi
 
     if [[ ${TGBOT} = 'true' ]]; then
@@ -98,11 +99,13 @@ function test_notification {
         curl -s -k "https://api.telegram.org/bot$TGBOT_SEND_TOKEN/sendMessage" \
             --data-urlencode "chat_id=$TGBOT_SEND_CHATID" \
             --data-urlencode "text=这是一条测试消息 This is a test message"
+        echo
     fi
 
     if [[ ${SERVERCHAN} = 'true' ]]; then
         echo -e "\033[34m测试 Server酱 中... \033[0m"
         curl -s "http://sc.ftqq.com/$SERVERCHAN_KEY.send?text=ASP" -d "&desp=这是一条测试消息 This is a test message"
+        echo
     fi
 
 }
