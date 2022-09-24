@@ -25,6 +25,7 @@ docker run -itd \
   -e PGID=1000 \
   -e PUID=1000 \
   -e PT_QIANDAO=true \
+  -e IYUU_API= \
   -e SET_PM=true \
   -e CFVR=755 \
   -e SMTP=false \
@@ -56,6 +57,7 @@ services:
             - PGID=1000
             - PUID=1000
             - PT_QIANDAO=true
+            - IYUU_API=
             - SET_PM=true
             - CFVR=755
             - SMTP=false
@@ -83,6 +85,7 @@ services:
 |          ```-e PUID=1000```           | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
 |       ```-e TZ=Asia/Shanghai```       |                             时区                             |
 |       ```-e PT_QIANDAO=true```       |                             是否开启PT自动签到                             |
+|       ```-e IYUU_API=```       |                             IYUU通知API密钥，用于PT站签到通知                             |
 |       ```-e SET_PM=true```       |                             是否开启自动设置权限                             |
 |          ```-e CFVR=755 ```           | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E) |
 |          ```-e SMTP=false```          |                         是否开启SMTP                         |
