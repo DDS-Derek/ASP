@@ -17,7 +17,8 @@ ENV PUID=1000 \
     TGBOT_SEND_TOKEN= \
     TGBOT_SEND_CHATID= \
     SERVERCHAN=false \
-    SERVERCHAN_KEY=
+    SERVERCHAN_KEY= \
+    IYUU_API=IYUU13547Tbs7e4d6ef8a4bee3afce47f24ed954af0bd25exx
 
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --no-cache --update \
@@ -44,9 +45,9 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     rm -rf /root/.cache && \
     rm -rf /tmp/*
 
-COPY --chmod=755 . /
+COPY --chmod=755 ./app /app
 
-CMD [ "/shell/start.sh" ]
+CMD [ "/app/run.sh" ]
 
 VOLUME [ "/app/log" ]
-VOLUME [ "/app/config" ]
+VOLUME [ "/app/pt_qiandao" ]

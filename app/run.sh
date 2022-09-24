@@ -1,23 +1,25 @@
 #!/bin/bash
 
-. /app/notification.sh
+. /app/settings.sh
 
-if [[ ${SET_PM} = 'true' ]]; then
-	set_pm
-fi
+cat /app/ASP
 
-if [[ ${PT_QIANDAO} = 'true' ]]; then
-	pt_qiandao
-fi
+lock
 
-if [[ ${SMTP} = 'true' ]]; then
-	smtp
-fi
+set_tz
 
-if [[ ${TGBOT} = 'true' ]]; then
-	tgbot
-fi
+adduser
 
-if [[ ${SERVERCHAN} = 'true' ]]; then
-	serverchan
-fi
+logs
+
+set_supervisord
+
+set_pm
+
+pt_qiandao
+
+test_notification
+
+cat_cron
+
+exec /usr/bin/supervisord -n -c /app/supervisord.conf
