@@ -121,8 +121,8 @@ function set_supervisord {
         mkdir -p /etc/supervisor.d/
     fi
 
-    if [ ! -d "/var/log/supervisor" ]; then
-        mkdir -p /var/log/supervisor
+    if [ ! -d "/app/log/supervisor" ]; then
+        mkdir -p /app/log/supervisor
     fi
 
 }

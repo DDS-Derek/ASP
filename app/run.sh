@@ -22,4 +22,6 @@ test_notification
 
 cat_cron
 
+bash /app/log_mv.sh
+
 exec /usr/bin/supervisord -n -c /app/supervisord.conf
