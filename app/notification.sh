@@ -1,12 +1,15 @@
 #!/bin/bash
 
 function pt_qiandao {
+	echo
 	python3 /app/pt.py
 	date
 	echo 'PT站点签到成功'
+	echo
 }
 
 function set_pm {
+	echo
 	chown -R abc:abc /00-asp
 	chown -R abc:abc /01-asp
 	chown -R abc:abc /02-asp
@@ -17,9 +20,11 @@ function set_pm {
 	chmod -R $CFVR /03-asp
 	date
 	echo '权限设置完成'
+	echo
 }
 
 function smtp {
+	echo
 	date
 	sendEmail \
 		-f $FROM_EMAIL \
@@ -33,17 +38,25 @@ function smtp {
 		Set permissions successfully \
 		-o message-content-type=html \
 		-o message-charset=utf-8
+	echo
+	echo
 }
 
 
 function tgbot {
+	echo
 	date
 	curl -s -k "https://api.telegram.org/bot$TGBOT_SEND_TOKEN/sendMessage" \
 		--data-urlencode "chat_id=$TGBOT_SEND_CHATID" \
 		--data-urlencode "text=设置权限成功 Set permissions successfully"
+	echo
+	echo
 }
 
 function serverchan {
+	echo
 	date
 	curl -s "http://sc.ftqq.com/$SERVERCHAN_KEY.send?text=ASP" -d "&desp=设置权限成功 Set permissions successfully"
+	echo
+	echo
 }
