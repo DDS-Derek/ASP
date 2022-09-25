@@ -19,6 +19,12 @@ function logs {
         touch /app/log/ASP.log
     fi
 
+    if [ ! -f "/app/lock/log_mv.lock" ]; then
+        touch /app/lock/log_mv.lock
+        echo -e "\033[34m设置 自动整理Logs文件 定时任务中... \033[0m"
+        (crontab -l ; echo "0 3 * * * /app/log_mv.sh") | crontab -
+    fi
+
 }
 
 function pt_qiandao {
@@ -30,7 +36,7 @@ function pt_qiandao {
         fi
 
         if [ ! -f "/app/pt_qiandao/site.json" ]; then
-            echo -e "\033[34m创建pt_site_qiaodao_settings文件... \033[0m"
+            echo -e "\033[34m创建 pt_site_qiaodao_settings 文件... \033[0m"
             touch /app/pt_qiandao/site.json
         fi
 
@@ -134,6 +140,7 @@ function set_tz {
         echo -e "\033[34m设置时区... \033[0m"
         ln -sf /usr/share/zoneinfo/$TZ   /etc/localtime
         echo $TZ > /etc/timezone
+        echo -e "\033[32m时区 ${TZ} \033[0m"
     fi
 
 }
@@ -145,6 +152,7 @@ function adduser {
         echo -e "\033[34m设置PUID PGID... \033[0m"
         groupmod -o -g "$PGID" abc
         usermod -o -u "$PUID" abc
+        echo -e "\033[32m用户ID ${PUID} 用户组ID ${PGID} \033[0m"
     fi
 
 }
