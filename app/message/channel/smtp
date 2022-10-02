@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo
+date
+sendEmail \
+	-f $FROM_EMAIL \
+	-s $MAILER_HOST \
+	-t $TO_EMAIL \
+	-xu $MAILER_USER \
+	-xp $MAILER_PASSWORD \
+	-o tls=$TLS \
+	-u ASP Mial \
+	-m 设置权限成功 \
+	Set permissions successfully \
+	-o message-content-type=html \
+	-o message-charset=utf-8
+echo
+echo

@@ -1,5 +1,7 @@
 FROM alpine:3.16
 
+ENV CONFIG_DIR=/config
+
 ENV PUID=1000 \
     PGID=1000 \
     TZ=Asia/Shanghai \
@@ -49,5 +51,4 @@ COPY --chmod=755 ./app /app
 
 CMD [ "/app/run.sh" ]
 
-VOLUME [ "/app/log" ]
-VOLUME [ "/app/pt_qiandao" ]
+VOLUME [ "/config" ]

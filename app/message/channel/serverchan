@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo
+date
+curl -s "http://sc.ftqq.com/$SERVERCHAN_KEY.send?text=ASP" -d "&desp=设置权限成功 Set permissions successfully"
+echo
+echo

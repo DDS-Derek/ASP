@@ -1,11 +1,10 @@
-# -*- coding:utf-8 -*-
-# Time:2021/10/16 16:45
-# Author:Chiser
-
 import requests
 import json
 import datetime
+import os
 from urllib import parse
+
+CONFIG_DIR = os.environ.get( "CONFIG_DIR" )
 
 def get_page(item):
     try:
@@ -39,7 +38,7 @@ def get_page(item):
 
 if __name__ == '__main__':
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
-    json_data = open('/app/pt_qiandao/site.json', encoding='utf-8')
+    json_data = open('{0}/pt_qiandao/site.json'.format(CONFIG_DIR), encoding='utf-8')
     json_data = json.load(json_data)
     send_txt = []
     # urlcode编码

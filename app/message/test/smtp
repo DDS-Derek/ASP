@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo -e "\033[34m测试 SMTP 中... \033[0m"
+sendEmail \
+    -f $FROM_EMAIL \
+    -s $MAILER_HOST \
+    -t $TO_EMAIL \
+    -xu $MAILER_USER \
+    -xp $MAILER_PASSWORD \
+    -o tls=$TLS \
+    -u ASP Mial \
+    -m 这是一件测试邮件 \
+    This is a test email \
+    -o message-content-type=html \
+    -o message-charset=utf-8
+echo

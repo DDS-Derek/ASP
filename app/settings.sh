@@ -6,17 +6,21 @@ function lock {
         mkdir -p /app/lock
     fi
 
+    if [ ! -d "${CONFIG_DIR}" ]; then
+        mkdir -p ${CONFIG_DIR}
+    fi
+
 }
 
 function logs {
 
-    if [ ! -d "/app/log" ]; then
-        mkdir -p /app/log
+    if [ ! -d "${CONFIG_DIR}/logs" ]; then
+        mkdir -p ${CONFIG_DIR}/logs
     fi
 
-    if [ ! -f "/app/log/ASP.log" ]; then
+    if [ ! -f "${CONFIG_DIR}/logs/ASP.log" ]; then
         echo -e "\033[34m创建 logs 文件... \033[0m"
-        touch /app/log/ASP.log
+        touch ${CONFIG_DIR}/logs/ASP.log
     fi
 
     if [ ! -f "/app/lock/log_mv.lock" ]; then
@@ -31,21 +35,21 @@ function pt_qiandao {
 
     if [[ ${PT_QIANDAO} = 'true' ]]; then
 
-        if [ ! -d "/app/pt_qiandao" ]; then
-            mkdir -p /app/pt_qiandao
+        if [ ! -d "${CONFIG_DIR}/pt_qiandao" ]; then
+            mkdir -p ${CONFIG_DIR}/pt_qiandao
         fi
 
-        if [ ! -f "/app/pt_qiandao/site.json" ]; then
+        if [ ! -f "${CONFIG_DIR}/pt_qiandao/site.json" ]; then
             echo -e "\033[34m创建 pt_site_qiaodao_settings 文件... \033[0m"
-            touch /app/pt_qiandao/site.json
+            touch ${CONFIG_DIR}/pt_qiandao/site.json
         fi
 
         if [ ! -f "/app/lock/pt_qiandao.lock" ]; then
             touch /app/lock/pt_qiandao.lock
             echo -e "\033[34m设置 PT签到 定时任务中... \033[0m"
-            (crontab -l ; echo "0 8 * * * /app/pt_qiandao.sh") | crontab -
+            (crontab -l ; echo "0 8 * * * /app/sites/pt_qiandao.sh") | crontab -
             echo -e "\033[34m设置 PT签到消息通知 中... \033[0m"
-            sed -i "/.*api = */c\    api = 'http://iyuu.cn/$IYUU_API.send'" /app/pt.py
+            sed -i "/.*api = */c\    api = 'http://iyuu.cn/$IYUU_API.send'" /app/sites/pt.py
         fi
 
     fi
@@ -75,7 +79,7 @@ function set_pm {
         if [ ! -f "/app/lock/set_pm.lock" ]; then
             touch /app/lock/set_pm.lock
             echo -e "\033[34m设置 自动设置文件权限 定时任务中... \033[0m"
-            (crontab -l ; echo "0 */2 * * * /app/set_pm.sh") | crontab -
+            (crontab -l ; echo "0 */2 * * * /app/set_pm/set_pm.sh") | crontab -
         fi
     fi
 
@@ -84,34 +88,15 @@ function set_pm {
 function test_notification {
 
     if [[ ${SMTP} = 'true' ]]; then
-        echo -e "\033[34m测试 SMTP 中... \033[0m"
-        sendEmail \
-            -f $FROM_EMAIL \
-            -s $MAILER_HOST \
-            -t $TO_EMAIL \
-            -xu $MAILER_USER \
-            -xp $MAILER_PASSWORD \
-            -o tls=$TLS \
-            -u ASP Mial \
-            -m 这是一件测试邮件 \
-            This is a test email \
-            -o message-content-type=html \
-            -o message-charset=utf-8
-        echo
+        bash /app/message/test/smtp
     fi
 
     if [[ ${TGBOT} = 'true' ]]; then
-        echo -e "\033[34m测试 Telegram Bot 中... \033[0m"
-        curl -s -k "https://api.telegram.org/bot$TGBOT_SEND_TOKEN/sendMessage" \
-            --data-urlencode "chat_id=$TGBOT_SEND_CHATID" \
-            --data-urlencode "text=这是一条测试消息 This is a test message"
-        echo
+        bash /app/message/test/tgbot
     fi
 
     if [[ ${SERVERCHAN} = 'true' ]]; then
-        echo -e "\033[34m测试 Server酱 中... \033[0m"
-        curl -s "http://sc.ftqq.com/$SERVERCHAN_KEY.send?text=ASP" -d "&desp=这是一条测试消息 This is a test message"
-        echo
+        bash /app/message/test/serverchan
     fi
 
 }
@@ -127,8 +112,8 @@ function set_supervisord {
         mkdir -p /etc/supervisor.d/
     fi
 
-    if [ ! -d "/app/log/supervisor" ]; then
-        mkdir -p /app/log/supervisor
+    if [ ! -d "${CONFIG_DIR}/logs/supervisor" ]; then
+        mkdir -p ${CONFIG_DIR}/logs/supervisor
     fi
 
 }
