@@ -8,6 +8,7 @@
   - [参数说明](#参数说明)
   - [文件权限说明](#文件权限说明)
   - [PUID GUID 说明](#puid-guid-说明)
+  - [添加站点及签到方式](#添加站点及签到方式)
 
 ## 简介
 
@@ -100,7 +101,7 @@ services:
 |           ```-v /02-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |           ```-v /03-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |             ```-v /app/log```             |                           log目录                            |
-|             ```-v /app/pt_qiandao```             |                           PT签到配置文件目录，[具体配置](https://github.com/aLuvletter/pt_res)                            |
+|             ```-v /app/pt_qiandao```             |                           PT签到配置文件目录，[具体配置](#添加站点及签到方式)                            |
 
 ## 文件权限说明
 
@@ -125,3 +126,65 @@ services:
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
+
+## 添加站点及签到方式
+在site.json文件中自行根据站点特性以及签到需求选择以下签到方式添加站点</br>
+通用签到方式:
+```
+{
+    "site": "站点名称",
+    "url": "站点地址",
+    "cookie": "站点cookie"
+}
+```
+签到方式1:
+```
+{
+    "site": "站点名称",
+    "url": "域名/attendance.php",
+    "referer": "域名/index.php",
+    "cookie": "站点cookie"
+}
+```
+签到方式例2:
+```
+{
+    "site": "站点名称",
+    "url": "域名/signin.php",
+    "referer": "域名/index.php",
+    "cookie": "站点cookie"
+}
+```
+签到方式3:
+```
+{
+    "site": "站点名称",
+    "url": "域名/attendance.php",
+    "cookie": "站点cookie"
+}
+```
+签到方式4:
+```
+{
+    "site": "站点名称",
+    "url": "域名/sign_in.php",
+    "referer": "域名/faq.php",
+    "action": "sign_in",
+    "cookie": "站点cookie"
+}
+```
+签到方式5:
+```
+{
+    "site": "站点名称",
+    "url": "域名/attendance-ajax.php",
+    "cookie": "站点cookie"
+}
+```
+<h2>已知站点的签到方式</h2>
+通用签到方式站点:KeepFrds、SouLvoice、HDAI、HDBD、PTMSG、HDFANS、CCF、DIC、U2、MTEAM、GPW、HUIJVTT[貌似已关闭站点]</br></br>
+签到方式1站点:PTHOME</br></br>
+签到方式2站点:HAIDAN</br></br>
+签到方式3站点:Lemonhd、HDATMOS、HDZONE、HDTIME、3WMG</br></br>
+签到方式4站点:HDAREA</br></br>
+签到方式5站点:PterClub</br></br>
