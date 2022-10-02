@@ -82,13 +82,13 @@ services:
 
 |               Parameter               |                           Function                           |
 | :-----------------------------------: | :----------------------------------------------------------: |
-|          ```-e PGID=1000```           | 对于 GroupID - 请参阅下面的[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
-|          ```-e PUID=1000```           | 对于 UserID - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#puid-guid-%E8%AF%B4%E6%98%8E) |
+|          ```-e PGID=1000```           | 对于 GroupID - 请参阅下面的[说明](#puid-guid-说明) |
+|          ```-e PUID=1000```           | 对于 UserID - 请参阅下面的说明[说明](#puid-guid-说明) |
 |       ```-e TZ=Asia/Shanghai```       |                             时区                             |
 |       ```-e PT_QIANDAO=true```       |                             是否开启PT自动签到                             |
 |       ```-e IYUU_API=```       |                             IYUU通知API密钥，用于PT站签到通知                             |
 |       ```-e SET_PM=true```       |                             是否开启自动设置权限                             |
-|          ```-e CFVR=755 ```           | 对于文件权限 - 请参阅下面的说明[说明](https://github.com/DDS-Derek/ASP#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E) |
+|          ```-e CFVR=755 ```           | 对于文件权限 - 请参阅下面的说明[说明](#文件权限说明) |
 |          ```-e SMTP=false```          |                         是否开启SMTP                         |
 |   ```-e FROM_EMAIL=test@test.com```   |                         SMTP发送邮箱                         |
 | ```-e MAILER_HOST=smtp.test.com:25``` |                        SMTP服务器地址                        |
