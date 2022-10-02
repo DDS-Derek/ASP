@@ -12,7 +12,9 @@
 
 ## 简介
 
-ASP全称Automatically set permissions，用于自动设置文件夹和文件的权限，初衷是为影视自动化而设计的
+- 自动设置目录权限
+- PT站定时签到
+- Server酱，SMTP，TeleGram，IYUU 通知
 
 ## 部署
 
