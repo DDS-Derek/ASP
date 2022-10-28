@@ -37,6 +37,7 @@ RUN \
     perl \
     perl-net-ssleay \
     perl-io-socket-ssl \
+    git \
     supervisor && \
     # Python库 安装
     pip install -r https://raw.githubusercontent.com/DDS-Derek/ASP/main/requirement.txt && \
@@ -45,6 +46,9 @@ RUN \
     tar -xzvf /tmp/sendEmail-v1.56.tar.gz -C /tmp/ && \
     cp -a /tmp/sendEmail-v1.56/sendEmail /usr/local/bin && \
     sed -i "1906s/.*/if (\! IO::Socket::SSL->start_SSL(\$SERVER, SSL_version => \'SSLv23:\!SSLv2\', SSL_verify_mode => 0)) {/" /usr/local/bin/sendEmail && \ 
+    # appotry/PTtool 安装
+    git clone https://github.com/appotry/PTtool.git /app/appotry_PTtool && \
+    chmod -R 755 /app/appotry_PTtool && \
     # 创建用户
     addgroup -S abc && \
     adduser -S abc -G abc -h /home/abc && \
@@ -55,6 +59,6 @@ RUN \
 
 COPY --chmod=755 ./app /app
 
-CMD [ "/app/run.sh" ]
+ENTRYPOINT [ "/app/run.sh" ]
 
 VOLUME [ "/config" ]
