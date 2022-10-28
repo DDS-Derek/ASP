@@ -22,7 +22,9 @@ ENV PUID=1000 \
     SERVERCHAN_KEY= \
     IYUU_API=IYUU13547Tbs7e4d6ef8a4bee3afce47f24ed954af0bd25exx
 
-RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
+RUN \
+    # 软件安装
+    echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --no-cache --update \
     python3-dev \
     py3-pip \
@@ -36,13 +38,17 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     perl-net-ssleay \
     perl-io-socket-ssl \
     supervisor && \
-    python3 -m pip install requests && \
+    # Python库 安装
+    pip install -r https://raw.githubusercontent.com/DDS-Derek/ASP/main/requirement.txt && \
+    # SendEmail 安装
     wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz -P /tmp/ && \
     tar -xzvf /tmp/sendEmail-v1.56.tar.gz -C /tmp/ && \
     cp -a /tmp/sendEmail-v1.56/sendEmail /usr/local/bin && \
     sed -i "1906s/.*/if (\! IO::Socket::SSL->start_SSL(\$SERVER, SSL_version => \'SSLv23:\!SSLv2\', SSL_verify_mode => 0)) {/" /usr/local/bin/sendEmail && \ 
+    # 创建用户
     addgroup -S abc && \
     adduser -S abc -G abc -h /home/abc && \
+    # 清理
     rm -rf /var/cache/apk/* && \
     rm -rf /root/.cache && \
     rm -rf /tmp/*
