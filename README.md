@@ -32,12 +32,12 @@ docker run -itd \
   -e SET_PM=true \
   -e CFVR=755 \
   -e SMTP=false \
-  -e FROM_EMAIL=test@test.com \
-  -e MAILER_HOST=smtp.test.com:25 \
-  -e TO_EMAIL=test@test.com \
-  -e MAILER_USER=test@test.com \
-  -e MAILER_PASSWORD=test \
-  -e TLS=yes
+  -e SMTP_FROM_EMAIL=test@test.com \
+  -e SMTP_MAILER_HOST=smtp.test.com:25 \
+  -e SMTP_TO_EMAIL=test@test.com \
+  -e SMTP_MAILER_USER=test@test.com \
+  -e SMTP_MAILER_PASSWORD=test \
+  -e SMTP_TLS=yes
   -v /path:/00-asp \
   -v /path:/01-asp \
   -v /path:/02-asp \
@@ -64,12 +64,12 @@ services:
             - SET_PM=true
             - CFVR=755
             - SMTP=false
-            - FROM_EMAIL=test@test.com
-            - MAILER_HOST=smtp.test.com:25
-            - TO_EMAIL=test@test.com
-            - MAILER_USER=test@test.com
-            - MAILER_PASSWORD=test
-            - TLS=yes
+            - SMTP_FROM_EMAIL=test@test.com
+            - SMTP_MAILER_HOST=smtp.test.com:25
+            - SMTP_TO_EMAIL=test@test.com
+            - SMTP_MAILER_USER=test@test.com
+            - SMTP_MAILER_PASSWORD=test
+            - SMTP_TLS=yes
         volumes:
             - '/path:/00-asp'
             - '/path:/01-asp'
@@ -92,12 +92,12 @@ services:
 |       ```-e SET_PM=true```       |                             是否开启自动设置权限                             |
 |          ```-e CFVR=755 ```           | 对于文件权限 - 请参阅下面的说明[说明](#文件权限说明) |
 |          ```-e SMTP=false```          |                         是否开启SMTP                         |
-|   ```-e FROM_EMAIL=test@test.com```   |                         SMTP发送邮箱                         |
-| ```-e MAILER_HOST=smtp.test.com:25``` |                        SMTP服务器地址                        |
-|    ```-e TO_EMAIL=test@test.com```    |                           接收邮箱                           |
-|  ```-e MAILER_USER=test@test.com```   |                         SMTP认证用户                         |
-|     ```-e MAILER_PASSWORD=test```     |                         SMTP认证密码                         |
-|           ```-e TLS=yes```            |                           是否TLS                            |
+|   ```-e SMTP_FROM_EMAIL=test@test.com```   |                         SMTP发送邮箱                         |
+| ```-e SMTP_MAILER_HOST=smtp.test.com:25``` |                        SMTP服务器地址                        |
+|    ```-e SMTP_TO_EMAIL=test@test.com```    |                           接收邮箱                           |
+|  ```-e SMTP_MAILER_USER=test@test.com```   |                         SMTP认证用户                         |
+|     ```-e SMTP_MAILER_PASSWORD=test```     |                         SMTP认证密码                         |
+|           ```-e SMTP_TLS=yes```            |                           是否TLS                            |
 |           ```-v /00-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |           ```-v /01-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |
 |           ```-v /02-asp```            | 设置权限目录，只需要把要设置权限的目录映射到此目录，就可以定时自动设置权限 |

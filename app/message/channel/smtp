@@ -3,12 +3,12 @@
 echo
 date
 sendEmail \
-	-f $FROM_EMAIL \
-	-s $MAILER_HOST \
-	-t $TO_EMAIL \
-	-xu $MAILER_USER \
-	-xp $MAILER_PASSWORD \
-	-o tls=$TLS \
+	-f $SMTP_FROM_EMAIL \
+	-s $SMTP_MAILER_HOST \
+	-t $SMTP_TO_EMAIL \
+	-xu $SMTP_MAILER_USER \
+	-xp $SMTP_MAILER_PASSWORD \
+	-o tls=$SMTP_TLS \
 	-u ASP Mial \
 	-m 设置权限成功 \
 	Set permissions successfully \

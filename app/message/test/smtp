@@ -2,12 +2,12 @@
 
 echo -e "\033[34m测试 SMTP 中... \033[0m"
 sendEmail \
-    -f $FROM_EMAIL \
-    -s $MAILER_HOST \
-    -t $TO_EMAIL \
-    -xu $MAILER_USER \
-    -xp $MAILER_PASSWORD \
-    -o tls=$TLS \
+    -f $SMTP_FROM_EMAIL \
+    -s $SMTP_MAILER_HOST \
+    -t $SMTP_TO_EMAIL \
+    -xu $SMTP_MAILER_USER \
+    -xp $SMTP_MAILER_PASSWORD \
+    -o tls=$SMTP_TLS \
     -u ASP Mial \
     -m 这是一件测试邮件 \
     This is a test email \
