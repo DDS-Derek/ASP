@@ -5,6 +5,7 @@ ENV CONFIG_DIR=/config
 ENV PUID=1000 \
     PGID=1000 \
     TZ=Asia/Shanghai \
+    PS1="\u@\h:\w \$ " \
     CFVR=755 \
     PT_QIANDAO=true \
     SET_PM=true \
