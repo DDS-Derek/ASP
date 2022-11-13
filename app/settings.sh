@@ -135,8 +135,8 @@ function adduser {
     if [ ! -f "/app/lock/adduser.lock" ]; then
         touch /app/lock/adduser.lock
         echo -e "\033[34m设置PUID PGID... \033[0m"
-        groupmod -o -g "$PGID" abc
-        usermod -o -u "$PUID" abc
+        groupmod -o -g "$PGID" asp
+        usermod -o -u "$PUID" asp
         echo -e "\033[32m用户ID ${PUID} 用户组ID ${PGID} \033[0m"
     fi
 

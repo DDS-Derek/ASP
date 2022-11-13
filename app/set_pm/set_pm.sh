@@ -2,10 +2,10 @@
 
 function set_pm {
 	echo
-	chown -R abc:abc /00-asp
-	chown -R abc:abc /01-asp
-	chown -R abc:abc /02-asp
-	chown -R abc:abc /03-asp
+	chown -R asp:asp /00-asp
+	chown -R asp:asp /01-asp
+	chown -R asp:asp /02-asp
+	chown -R asp:asp /03-asp
 	chmod -R $CFVR /00-asp
 	chmod -R $CFVR /01-asp
 	chmod -R $CFVR /02-asp
