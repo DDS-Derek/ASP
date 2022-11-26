@@ -110,7 +110,7 @@ function set_supervisord {
 
     if [ ! -f "/app/lock/supervisord.lock" ]; then
         touch /app/lock/supervisord.lock
-        cp /app/asp.ini /app/supervisord.conf
+        cp /app/asp.conf /app/supervisord.conf
     fi
 
     if [ ! -d "/etc/supervisor.d/" ]; then
