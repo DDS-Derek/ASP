@@ -1,5 +1,10 @@
 #!/bin/bash
 
+Green="\033[32m"
+Font="\033[0m"
+Red="\033[31m" 
+Blue="\033[34m"
+
 function lock {
 
     if [ ! -d "/app/lock" ]; then
@@ -19,13 +24,13 @@ function logs {
     fi
 
     if [ ! -f "${CONFIG_DIR}/logs/ASP.log" ]; then
-        echo -e "\033[34m创建 logs 文件... \033[0m"
+        echo -e "${Blue}创建 logs 文件... ${Font}"
         touch ${CONFIG_DIR}/logs/ASP.log
     fi
 
     if [ ! -f "/app/lock/log_mv.lock" ]; then
         touch /app/lock/log_mv.lock
-        echo -e "\033[34m设置 自动整理Logs文件 定时任务中... \033[0m"
+        echo -e "${Blue}设置 自动整理Logs文件 定时任务中... ${Font}"
         (crontab -l ; echo "0 3 * * * /app/log_mv.sh") | crontab -
     fi
 
@@ -40,15 +45,15 @@ function pt_qiandao {
         fi
 
         if [ ! -f "${CONFIG_DIR}/pt_qiandao/site.json" ]; then
-            echo -e "\033[34m创建 pt_site_qiaodao_settings 文件... \033[0m"
+            echo -e "${Blue}创建 pt_site_qiaodao_settings 文件... ${Font}"
             touch ${CONFIG_DIR}/pt_qiandao/site.json
         fi
 
         if [ ! -f "/app/lock/pt_qiandao.lock" ]; then
             touch /app/lock/pt_qiandao.lock
-            echo -e "\033[34m设置 PT签到 定时任务中... \033[0m"
+            echo -e "${Blue}设置 PT签到 定时任务中... ${Font}"
             (crontab -l ; echo "0 8 * * * /app/sites/pt_qiandao.sh") | crontab -
-            echo -e "\033[34m设置 PT签到消息通知 中... \033[0m"
+            echo -e "${Blue}设置 PT签到消息通知 中... ${Font}"
             sed -i "/.*api = */c\    api = 'http://iyuu.cn/$IYUU_API.send'" /app/sites/pt.py
         fi
 
@@ -78,7 +83,7 @@ function set_pm {
 
         if [ ! -f "/app/lock/set_pm.lock" ]; then
             touch /app/lock/set_pm.lock
-            echo -e "\033[34m设置 自动设置文件权限 定时任务中... \033[0m"
+            echo -e "${Blue}设置 自动设置文件权限 定时任务中... ${Font}"
             (crontab -l ; echo "0 */2 * * * /app/set_pm/set_pm.sh") | crontab -
         fi
     fi
@@ -122,10 +127,10 @@ function set_tz {
 
     if [ ! -f "/app/lock/tz.lock" ]; then
         touch /app/lock/tz.lock
-        echo -e "\033[34m设置时区... \033[0m"
+        echo -e "${Blue}设置时区... ${Font}"
         ln -sf /usr/share/zoneinfo/$TZ   /etc/localtime
         echo $TZ > /etc/timezone
-        echo -e "\033[32m时区 ${TZ} \033[0m"
+        echo -e "${Green}时区 ${TZ} ${Font}"
     fi
 
 }
@@ -134,19 +139,19 @@ function adduser {
 
     if [ ! -f "/app/lock/adduser.lock" ]; then
         touch /app/lock/adduser.lock
-        echo -e "\033[34m设置PUID PGID... \033[0m"
+        echo -e "${Blue}设置PUID PGID... ${Font}"
         groupmod -o -g "$PGID" asp
         usermod -o -u "$PUID" asp
-        echo -e "\033[32m用户ID ${PUID} 用户组ID ${PGID} \033[0m"
+        echo -e "${Green}用户ID ${PUID} 用户组ID ${PGID} ${Font}"
     fi
 
 }
 
 function cat_cron {
 
-    echo -e "\033[32mCron 定时任务预览\033[0m"
-    echo -e "\033[32m##########################################################################\033[0m"
+    echo -e "${Green}Cron 定时任务预览${Font}"
+    echo -e "${Green}##########################################################################${Font}"
     crontab -l
-    echo -e "\033[32m##########################################################################\033[0m"
+    echo -e "${Green}##########################################################################${Font}"
 
 }
