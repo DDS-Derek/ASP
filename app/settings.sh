@@ -155,3 +155,15 @@ function cat_cron {
     echo -e "${Green}##########################################################################${Font}"
 
 }
+
+function Service_Sync {
+
+if [[ ${Service_Sync} = 'true' ]]; then
+    if [ ! -f "/app/lock/Service_Sync.lock" ]; then
+        touch /app/lock/set_pm.lock
+        echo -e "${Blue}设置 Service_Sync 定时任务中... ${Font}"
+        (crontab -l ; echo "0 */2 * * * /app/Service_Sync.sh") | crontab -
+    fi
+fi
+
+}

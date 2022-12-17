@@ -21,7 +21,8 @@ ENV PUID=1000 \
     TGBOT_SEND_CHATID= \
     SERVERCHAN=false \
     SERVERCHAN_KEY= \
-    IYUU_API=IYUU13547Tbs7e4d6ef8a4bee3afce47f24ed954af0bd25exx
+    IYUU_API=IYUU13547Tbs7e4d6ef8a4bee3afce47f24ed954af0bd25exx \
+    Service_Sync=false
 
 RUN \
     # 软件安装
@@ -65,6 +66,10 @@ RUN \
     git clone \
         https://github.com/appotry/PTtool.git \
         /app/appotry_PTtool \
+    && \
+    curl \
+        -o /app/Service_Sync.sh \
+        https://github.com/DDS-Derek/VideoLab/raw/master/scripts/Service_Sync.sh \
     && \
     chmod -R 755 \
         /app/appotry_PTtool \
